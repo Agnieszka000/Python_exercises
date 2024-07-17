@@ -1,0 +1,28 @@
+# Project from Sekurak Academy webinar "Czy Pythonem można hakować wszystko?"
+# Write a program that generates a random number.
+# User has to find out the number.
+# The program has to inform if the number given by the user is bigger or smaller.
+# If the number is correct, program quits.
+
+import random
+
+def get_users_number():
+    users_number = input("Choose a number between 0 and 100: ")
+    return int(users_number)
+
+def get_chosen_number():
+    chosen_number = random.randint(0,100)
+    print(chosen_number)
+    return chosen_number
+
+def compare_numbers(chosen_number, users_number):
+    while int(users_number) != int(chosen_number):
+        if users_number > chosen_number:
+            users_number = int(input("Your number is too large. Try again: "))
+        else:
+            users_number = int(input("Your number is too small. Try again: "))  
+    print(f"Congratulations! {users_number} is the correct answer!")
+            
+chosen_number = get_chosen_number()
+users_number = get_users_number()
+compare_numbers(chosen_number, users_number)
