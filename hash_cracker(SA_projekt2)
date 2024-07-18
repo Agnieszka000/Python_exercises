@@ -1,0 +1,23 @@
+# Project from Sekurak Academy webinar "Czy Pythonem można hakować wszystko?"
+# You broke into a database of a huge corporation.
+# You manged to enumerate all the employees and their hashes.
+# Your task is to break Administrator's hash, but you have access only to Python.
+# Unleash dictionary attack and use /usr/share/wordlists/john.lst as your wordlist.
+
+import hashlib
+
+admin_hash = "9f6e6800cfae7749eb6c486619254b9c"
+
+with open(r"C:/usr/share/wordlists/john.lst", "r") as wordlist: # "r" before the path creates a raw string, which treats backslashes as literal characters.
+    for password in wordlist:
+        # Skip "#!comment:" comments in the wordlist:
+        if password[0] == "#":
+            continue
+        # Remove leading/trailing whitespace:
+        password = password.strip() 
+        hashed_password = hashlib.md5(password.encode())
+        # The output of the "hashlib" is a string of bytes, that's why it must be converted into a human-readable form (hexadeximals).
+        # The hexadecimal representation is a standard way to display hash values:
+        hashed_password = hashed_password.hexdigest().lower()
+        if hashed_password == admin_hash:
+           print(f"Password found: {password}.")
