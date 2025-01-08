@@ -23,7 +23,7 @@ def flippingBits(n):
     flipped = ~n
     # Mask the flipped result to ensure it's treated as an unsigned 32-bit integer
     # We need it because Python treats binaries as signed numbers
-    # # Masking to 32 bits in binary
+    # Masking to 32 bits in binary - evry bit goint through "1" in mask stays unchanged.
     flipped_unsigned = flipped & 0b11111111111111111111111111111111
     return flipped_unsigned
     
